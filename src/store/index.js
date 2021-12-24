@@ -3,7 +3,7 @@ import axios from "axios";
 import router from "@/router";
 
 
-const URL = "http://127.0.0.1:9000"
+const URL = "http://127.0.0.1:8000"
 
 
 const tokenConfig = (token) =>{
@@ -36,7 +36,7 @@ export default createStore({
                 video.tags.indexOf(val.val) > -1
             ))
         },
-        login (state, authData) { // username, password
+        login (state, authData) {
 
             const config = {
                 headers: {
@@ -182,7 +182,6 @@ export default createStore({
             return state.token
         },
         getAllVideosOfUser(state){
-            console.log(state.videosOfUser)
             return state.videosOfUser;
         },
     }
