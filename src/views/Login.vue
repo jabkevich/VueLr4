@@ -26,7 +26,13 @@
         </div>
         <!-- вход -->
 <!--        <button class="btn btn-outline-light btn-lg" id="signInBtn" @:click="counter++">sign in</button>-->
-
+        <div class="authError form-group m-3" v-if="loginError">
+        <span class="authError__list" v-for="(key, i) in Object.keys(loginError)" :key="i">
+          <span class="authError__error" v-for="(message, j) in loginError[key]" :key="j">
+             {{message}}
+          </span>
+        </span>
+        </div>
         <button class="btn btn-outline-light btn-lg"  id="signInBtn" type="submit" v-on:click = "submit">Login</button>
       </div>
     </form>
@@ -74,8 +80,10 @@ export default {
       // }
     },
   },
-  components: {
-
+  computed: {
+    loginError (){
+      return this.$store.getters.getLoginError;
+    }
   },
 }
 </script>

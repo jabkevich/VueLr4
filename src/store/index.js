@@ -24,7 +24,10 @@ export default createStore({
         videosTmp: [],
         token: localStorage.getItem('token'),
         userData: null,
-        videosOfUser: []
+        videosOfUser: [],
+        registrationError: null,
+        loginError: null,
+        repeatPasswordError: "",
     },
     mutations: {
         setVideos(state, videos) {
@@ -55,7 +58,12 @@ export default createStore({
                 router.push({
                     path: '/cabinet',
                 });
-            }).catch(err => console.log(err))
+            }).catch(err => {
+                state.loginError = err.response.data
+            })
+        },
+        setRepeatPasswordError(state, msg) {
+            state.repeatPasswordError = msg;
         },
         logout (state) {
             const token = state.token || localStorage.getItem('token');
@@ -71,13 +79,19 @@ export default createStore({
             })
             state.userData = null
             state.token = ""
+            state.videos = []
+            state.videosTmp = []
+            state.videosOfUser = []
+            state.registrationError = null
+            state.loginError = null
+            state.repeatPasswordError = ""
             localStorage.removeItem('token');
         },
-        loadUser (state, res) {
+        loadUser(state, res) {
             console.log(res)
             state.userData = res.data
         },
-        changeUser (state, res) {
+        changeUser(state, res) {
 
             const token =localStorage.getItem('token');
             const config = tokenConfig(token)
@@ -103,6 +117,15 @@ export default createStore({
                 console.log(err)
             })
         },
+        removeVideo(state, data){
+            const token = state.token || localStorage.getItem('token');
+            const config = tokenConfig(token)
+            axios.delete(URL + `/api/videos-of-user/${data.id}`, config).then(res => {
+                state.videosOfUser = state.videosOfUser.filter(video => video.id !== data.id)
+            }).catch(err => {
+                console.log(err)
+            })
+        },
         getVideosOFUser(state, res) {
             const token = localStorage.getItem('token');
             const config = tokenConfig(token)
@@ -115,8 +138,6 @@ export default createStore({
         },
 
         registerUser(state, res) {
-            console.log(res)
-
 
             const config = {
                 headers: {
@@ -128,7 +149,7 @@ export default createStore({
                     path: "/sign-in"
                 })
             }).catch(err => {
-                console.log(err)
+                state.registrationError = err.response.data
             })
         }
 
@@ -184,6 +205,15 @@ export default createStore({
         getAllVideosOfUser(state){
             return state.videosOfUser;
         },
+        getRegistrationError(state) {
+            return state.registrationError;
+        },
+        getLoginError(state) {
+            return state.loginError;
+        },
+        getRepeatPasswordError(state) {
+            return state.repeatPasswordError;
+        }
     }
 
 })

@@ -20,8 +20,11 @@
       </thead>
       <tbody id="videoTable">
       <tr v-for="(item, i) in allVideosOfUser" :key="i">
-        <td class="p-5 w-25">
-          <a :href="'/videos/' + i">{{ item.tags }}</a>
+        <td class="p-5 w-25 tagContent">
+          <div class="tagContainer">
+            <a :href="'/videos/' + i" class="tag">{{ item.tags }}</a>
+            <button class="btn btn-outline-light btn-lg" v-on:click="removeVideoForUser({id: item.id})">remove</button>
+          </div>
         </td>
         <td>
           <div class="card pull-right">
@@ -105,6 +108,7 @@
 
 import  HeaderOfCabinet from "@/components/HeaderOfCabinet";
 import  FooterOfCabinet from "@/components/FooterOfCabinet";
+import {mapMutations} from "vuex";
 export default {
   name: "MyVideos",
   components:{
@@ -117,6 +121,13 @@ export default {
   watch: {
     getUserData: function () {
       this.$store.dispatch("getVideosOfUser")
+    }
+  },
+  methods: {
+    ...mapMutations(["removeVideo"]),
+    removeVideoForUser: function (val, event) {
+      // event.preventDefault()
+      this.removeVideo(val)
     }
   },
   computed: {

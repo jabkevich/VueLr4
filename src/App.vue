@@ -7,6 +7,9 @@
 <script>
 </script>
 <style lang="scss">
+header{
+  width: 100%;
+}
 //#app {
 //  font-family: Avenir, Helvetica, Arial, sans-serif;
 //  -webkit-font-smoothing: antialiased;
@@ -353,10 +356,95 @@ footer {
 
 .userFields{
   display: grid;
-  grid-template-columns: 100px max-content;
+  grid-template-columns: 100px 1fr;
 }
 
 .userField{
   padding: 5px;
 }
+
+.authError{
+  display: grid;
+  grid-auto-rows: max-content;
+  max-width: 100%;
+  height: max-content;
+}
+.authError__list{
+  display: grid;
+  grid-auto-rows: 20px;
+  max-width: 100%;
+}
+
+.authError__error{
+  color: #FD8D93;
+}
+
+.tag{
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+.videoAction{
+  display: grid;
+}
+.videoContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between ;
+  width: 100%;
+  height: 100vh;
+}
+.video{
+  height: 100%;
+  width: 100%;
+}
+
+.tagContent{
+  position: relative;
+}
+.tagContainer{
+  position: absolute;
+  margin: 3rem;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-rows: max-content max-content;
+  grid-gap: 20px;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+@media screen and (max-width: 800px) {
+.tagContainer{
+  margin: 1rem;
+  padding: 10px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+  .tag{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .tagContainer{
+    margin: unset;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    grid-gap: 5px;
+  }
+
+
+}
+
 </style>

@@ -1,11 +1,12 @@
 <template>
   <HeaderOfCabinet/>
   <div class="userInfo" v-if="getUserData && Object.keys(userData).length > 0">
-      <div class="mb-3 userFields" v-for="(item, i) in Object.keys(getUserData)" :key="i">
+      <div class="mb-3 userFields" v-for="(item, i) in Object.keys(getUserData)" :key="i" >
         <span class="userField input-group-text mr-3" id="basic-addon3">{{item}}</span>
-        <input type="text" class="userField form-control" id="basic-url" aria-describedby="basic-addon3" v-model="this.userData[item]">
+        <input v-if="item !== 'id' && item !== 'username'" type="text" class="userField form-control" id="basic-url" aria-describedby="basic-addon3" v-model="this.userData[item]">
+        <span v-if="item === 'id' || item === 'username'" class="userField form-control input-group-text">{{this.userData[item]}}</span>
       </div>
-    <button class="btn btn-outline-light btn-lg btn-block"  id="signInBtn" type="submit" v-on:click = "submit">Изменить</button>
+    <button class="btn btn-outline-light btn-lg btn-block"  id="signInBtn" type="submit" v-on:click = "submit">Сохранить</button>
   </div>
   <FooterOfCabinet/>
 </template>

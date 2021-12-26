@@ -23,7 +23,7 @@
               <a href="/images" class="nav-link">images</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" type="submit" v-on:click="logoutUser">log out</a>
+              <a href="#" class="nav-link" type="submit" v-on:click="logoutUser">log out</a>
             </li>
           </ul>
         </div>

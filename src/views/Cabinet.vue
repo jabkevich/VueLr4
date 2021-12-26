@@ -18,10 +18,12 @@
       </tr>
       </thead>
       <tbody id="videoTable">
-      <tr v-for="(item, i) in allVideos" :key="i">
-        <td class="p-5 w-25">
-          <a :href="'/videos/' + i">{{ item.tags }}</a>
-          <a v-on:click="addVideo({tags: item.tags, link: item.link})">Добавть</a>
+      <tr v-for="(item, i) in allVideos" :key="i" >
+        <td class="tagContent">
+          <div class="tagContainer">
+            <a class="tag" :href="'/videos/' + i">{{ item.tags }}</a>
+            <button class="btn btn-outline-light btn-lg" v-on:click="addVideoForUser({tags: item.tags, link: item.link})">Add video</button>
+          </div>
         </td>
         <td>
           <div class="card pull-right">
@@ -134,7 +136,7 @@ export default {
       this.loadUser()
     },
     addVideoForUser: function (val, event) {
-      event.preventDefault()
+      // event.preventDefault()
       this.addVideo(val)
     }
   },
