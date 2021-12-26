@@ -7,34 +7,25 @@
 <script>
 </script>
 <style lang="scss">
+
+%paragraph {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-weight: normal;
+}
+
+%paragraph_error {
+ color: #FD8D93;
+}
+
+%paragraph_black {
+  color: black;
+}
+%paragraph_white {
+  color: white;
+}
 header{
   width: 100%;
 }
-//#app {
-//  font-family: Avenir, Helvetica, Arial, sans-serif;
-//  -webkit-font-smoothing: antialiased;
-//  -moz-osx-font-smoothing: grayscale;
-//  text-align: center;
-//  color: #2c3e50;
-//}
-
-//#nav {
-//  padding: 30px;
-//
-//  a {
-//    font-weight: bold;
-//    color: #2c3e50;
-//
-//    &.router-link-exact-active {
-//      color: #42b983;
-//    }
-//  }
-//}
-
-
-
-
-
 body, html {
   width: 100%;
   height: 100%;
@@ -46,9 +37,7 @@ body, html {
   background-color: var(--back-color);
 }
 
-.navbar li a {
-  color: var(--gray) !important;
-}
+
 
 .navbar li a:hover {
   color: var(--outline-text-color) !important;
@@ -324,6 +313,7 @@ footer {
   --text-color: white;
   --github-color: white;
   --gray: lightgray;
+  --link-actibe: #FD8D93;
 
 }
 
@@ -376,7 +366,9 @@ footer {
 }
 
 .authError__error{
-  color: #FD8D93;
+  @extend %paragraph;
+  @extend %paragraph_error;
+
 }
 
 .tag{
@@ -445,6 +437,56 @@ footer {
   }
 
 
+}
+
+.axolotls{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.axolotl{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.axolotlPhoto__container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.axolotlPhoto {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+}
+
+
+.errorContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.error{
+  width: 100%;
+  height: 100%;
+}
+
+.errorImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nav-link {
+  color: var(--gray) !important;
+}
+.navbar-light .navbar-nav .active>.link__active {
+  color: var(--link-actibe) !important;
 }
 
 </style>

@@ -26,6 +26,7 @@ export default createStore({
         userData: null,
         videosOfUser: [],
         registrationError: null,
+        axolotls: [],
         loginError: null,
         repeatPasswordError: "",
     },
@@ -39,6 +40,30 @@ export default createStore({
                 video.tags.indexOf(val.val) > -1
             ))
         },
+        loadPost (state, query) {
+            fetch("https://api.pexels.com/v1/search?query=" + query, {
+                headers: {
+                    Authorization: "563492ad6f91700001000001623d28b6e2b2462b938cc0a3cd1ca298"
+                }
+            })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(data => {
+                    for (let index = 0; index < data.photos.length; index++) {
+
+                        if(data.photos[index].src.original !== ""){
+                            state.axolotls.push(data.photos[index].src.original)
+                            console.log(index, data.photos[index].src.original )
+                            console.log(state.axolotls)
+                        }
+                    }
+
+                }).catch((error) => {
+                console.log("ERROR: " + error);
+            });
+        },
+
         login (state, authData) {
 
             const config = {
@@ -213,6 +238,9 @@ export default createStore({
         },
         getRepeatPasswordError(state) {
             return state.repeatPasswordError;
+        },
+        getAxolotls(state) {
+            return state.axolotls;
         }
     }
 

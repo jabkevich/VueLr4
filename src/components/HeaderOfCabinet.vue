@@ -11,16 +11,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a href="/user-info" class="nav-link">info</a>
+              <a href="/user-info" class="nav-link" v-bind:class="{'link__active': this.$route.path==='/user-info'}"  >info</a>
             </li>
             <li class="nav-item active">
-              <a href="/my-videos" class="nav-link">my videos</a>
+              <a href="/my-videos" class="nav-link " v-bind:class="{'link__active': this.$route.path==='/my-videos'}" >my videos</a>
             </li>
             <li class="nav-item active">
-              <a href="/cabinet" class="nav-link">videos</a>
+              <a href="/cabinet" class="nav-link" v-bind:class="{'link__active': this.$route.path==='/cabinet'}">videos</a>
             </li>
-            <li class="nav-item">
-              <a href="/images" class="nav-link">images</a>
+            <li class="nav-item active">
+              <a href="/images" class="nav-link" v-bind:class="{'link__active': this.$route.path==='/images'}">images</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link" type="submit" v-on:click="logoutUser">log out</a>

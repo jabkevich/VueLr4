@@ -19,10 +19,10 @@
       </tr>
       </thead>
       <tbody id="videoTable">
-      <tr v-for="(item, i) in allVideosOfUser" :key="i">
+      <tr v-for="(item, i) in this.videos" :key="i">
         <td class="p-5 w-25 tagContent">
           <div class="tagContainer">
-            <a :href="'/videos/' + i" class="tag">{{ item.tags }}</a>
+            <a class="tag">{{ item.tags }}</a>
             <button class="btn btn-outline-light btn-lg" v-on:click="removeVideoForUser({id: item.id})">remove</button>
           </div>
         </td>
@@ -38,6 +38,7 @@
           </div>
         </td>
       </tr>
+
 
       </tbody>
     </table>
@@ -115,12 +116,26 @@ export default {
     HeaderOfCabinet,
     FooterOfCabinet,
   },
+  data() {
+    return {
+      searchInput: "",
+      videos: []
+    }
+  },
   mounted() {
     this.$store.dispatch("getUserData")
   },
   watch: {
     getUserData: function () {
       this.$store.dispatch("getVideosOfUser")
+    },
+    allVideosOfUser: function (){
+      this.videos = this.allVideosOfUser;
+    },
+    searchInput: function (){
+      this.videos = this.allVideosOfUser.filter((video) => (
+          video.tags.indexOf(this.searchInput) > -1
+      ))
     }
   },
   methods: {
@@ -136,7 +151,6 @@ export default {
       return this.$store.getters.getAllVideosOfUser;
     },
     getUserData(){
-
       return this.$store.getters.userData
     },
   }

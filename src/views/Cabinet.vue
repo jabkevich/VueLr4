@@ -21,8 +21,9 @@
       <tr v-for="(item, i) in allVideos" :key="i" >
         <td class="tagContent">
           <div class="tagContainer">
-            <a class="tag" :href="'/videos/' + i">{{ item.tags }}</a>
-            <button class="btn btn-outline-light btn-lg" v-on:click="addVideoForUser({tags: item.tags, link: item.link})">Add video</button>
+            <a class="tag">{{ item.tags }}</a>
+            <button class="btn btn-outline-light btn-lg" v-on:click="addVideoForUser({tags: item.tags, link: item.link})">Add to my video</button>
+<!--            <a class="tag" :href="'/videos/' + i">open</a>-->
           </div>
         </td>
         <td>

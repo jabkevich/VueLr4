@@ -39,12 +39,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
   },
-  {
-    path: '/videos/:id',
-    name: 'videos',
-    component: import(/* webpackChunkName: "about" */ '../views/Videos.vue'),
-    props: { default: true, sidebar: false }
-  },
+  // {
+  //   path: '/videos/:id',
+  //   name: 'videos',
+  //   component: import(/* webpackChunkName: "about" */ '../views/Videos.vue'),
+  //   props: { default: true, sidebar: false }
+  // },
   {
     path: '/:pathMatch(.*)*',
     name: '404',
